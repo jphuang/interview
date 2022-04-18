@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class TreeOrder {
   public List<List<Integer>> levelOrder(TreeNode root) {
@@ -49,7 +46,38 @@ public class TreeOrder {
       }
       levels.add(level);
     }
-
+    return levels;
+  }
+  // 103. 二叉树的锯齿形层序遍历
+  public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+    List<List<Integer>> levels = new LinkedList<>();
+    if (root == null) {
+      return levels;
+    }
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    boolean isOrderLeft = true;
+    while (!queue.isEmpty()) {
+      Deque<Integer> level = new LinkedList<>();
+      int size = queue.size();
+      // size不能写在fori里面
+      for (int i = 0; i < size; i++) {
+        TreeNode poll = queue.poll();
+        if (isOrderLeft) {
+          level.addLast(poll.val);
+        } else {
+          level.addFirst(poll.val);
+        }
+        if (poll.left != null) {
+          queue.offer(poll.left);
+        }
+        if (poll.right != null) {
+          queue.offer(poll.right);
+        }
+      }
+      levels.add(new LinkedList<>(level));
+      isOrderLeft = !isOrderLeft;
+    }
     return levels;
   }
 }
