@@ -65,4 +65,22 @@ public class TreePathSum {
     hasPathSumListDSF(root.right, targetSum, list, tmp);
     tmp.pollLast();
   }
+
+  static int maxSum = Integer.MIN_VALUE;
+
+  public static int maxPathSum(TreeNode root) {
+    maxPathSumHelper(root);
+    return maxSum;
+  }
+
+  public static int maxPathSumHelper(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
+    int leftValue = Math.max(maxPathSumHelper(root.left), 0);
+    int rightValue = Math.max(maxPathSumHelper(root.right), 0);
+    int newValue = root.val + leftValue + rightValue;
+    maxSum = Math.max(maxSum, newValue);
+    return root.val + Math.max(leftValue, rightValue);
+  }
 }
