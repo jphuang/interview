@@ -80,4 +80,30 @@ public class TreeOrder {
     }
     return levels;
   }
+  // 107. 二叉树的层序遍历 II
+  public List<List<Integer>> levelOrderBottom(TreeNode root) {
+    LinkedList<List<Integer>> levels = new LinkedList<>();
+    if (root == null) {
+      return levels;
+    }
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    while (!queue.isEmpty()) {
+      List<Integer> level = new ArrayList<>();
+      int size = queue.size();
+      // size不能写在fori里面
+      for (int i = 0; i < size; i++) {
+        TreeNode poll = queue.poll();
+        level.add(poll.val);
+        if (poll.left != null) {
+          queue.offer(poll.left);
+        }
+        if (poll.right != null) {
+          queue.offer(poll.right);
+        }
+      }
+      levels.addFirst(level);
+    }
+    return levels;
+  }
 }
