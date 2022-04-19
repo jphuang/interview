@@ -25,7 +25,7 @@ public class NodeConnect {
     }
     return root;
   }
-
+  // 116. 填充每个节点的下一个右侧节点指针(完全树)
   public Node connect2(Node root) {
     if (root == null) {
       return null;
@@ -41,6 +41,31 @@ public class NodeConnect {
         head = head.next;
       }
       leftMost = leftMost.left;
+    }
+    return root;
+  }
+
+  // 117. 填充每个节点的下一个右侧节点指针 II
+  public Node connect3(Node root) {
+    if (root == null) {
+      return null;
+    }
+    Node curr = root;
+    while (curr != null) {
+      Node head = new Node(0);
+      Node pre = head;
+      while (curr != null) {
+        if (curr.left != null) {
+          pre.next = curr.left;
+          pre = pre.next;
+        }
+        if (curr.right != null) {
+          pre.next = curr.right;
+          pre = pre.next;
+        }
+        curr = curr.next;
+      }
+      curr = head.next;
     }
     return root;
   }
