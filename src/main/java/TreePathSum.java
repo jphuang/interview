@@ -67,7 +67,7 @@ public class TreePathSum {
   }
 
   static int maxSum = Integer.MIN_VALUE;
-
+  // 124. 二叉树中的最大路径和
   public static int maxPathSum(TreeNode root) {
     maxPathSumHelper(root);
     return maxSum;
