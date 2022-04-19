@@ -1,5 +1,4 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class TreePathSum {
   public static boolean hasPathSum(TreeNode root, int targetSum) {
@@ -42,5 +41,28 @@ public class TreePathSum {
 
     return hasPathSum2(root.left, targetSum - root.val)
         || hasPathSum2(root.right, targetSum - root.val);
+  }
+
+  public static List<List<Integer>> hasPathSumList(TreeNode root, int targetSum) {
+    List<List<Integer>> list = new ArrayList<>();
+    Deque<Integer> tmp = new LinkedList<>();
+    hasPathSumListDSF(root, targetSum, list, tmp);
+    return list;
+  }
+
+  public static void hasPathSumListDSF(
+      TreeNode root, int targetSum, List<List<Integer>> list, Deque<Integer> tmp) {
+    if (root == null) {
+      return;
+    }
+    targetSum -= root.val;
+    tmp.offerLast(root.val);
+    if (root.left == null && root.right == null && 0 == targetSum) {
+      list.add(new LinkedList<>(tmp));
+    }
+
+    hasPathSumListDSF(root.left, targetSum, list, tmp);
+    hasPathSumListDSF(root.right, targetSum, list, tmp);
+    tmp.pollLast();
   }
 }
