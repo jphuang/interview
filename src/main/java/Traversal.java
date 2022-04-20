@@ -1,7 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 public class Traversal {
   public static List<Integer> inorderTraversal(TreeNode root) {
@@ -18,6 +15,28 @@ public class Traversal {
     res.add(root.val);
     inorder(root.right, res);
   }
+
+  // 144. 二叉树的前序遍历 --迭代
+  public List<Integer> preorderTraversal2(TreeNode root) {
+    List<Integer> res = new ArrayList<>();
+    if (root == null) {
+      return res;
+    }
+    Stack<TreeNode> stack = new Stack<>();
+    stack.push(root);
+    while (!stack.isEmpty()) {
+      TreeNode pop = stack.pop();
+      res.add(pop.val);
+      if (pop.right != null) {
+        stack.push(pop.right);
+      }
+      if (pop.left != null) {
+        stack.push(pop.left);
+      }
+    }
+    return res;
+  }
+
   // 144. 二叉树的前序遍历 --递归
   public List<Integer> preorderTraversal(TreeNode root) {
     List<Integer> res = new ArrayList<>();
@@ -62,6 +81,22 @@ public class Traversal {
       root = root.right;
     }
 
+    return res;
+  }
+  // 145. 二叉树的后序遍历--迭代法(总有一种负负得正的样子)
+  public static List<Integer> postorderTraversalByDeque(TreeNode root) {
+    LinkedList<Integer> res = new LinkedList<>();
+    Stack<TreeNode> stack = new Stack<>();
+    while (root != null || !stack.isEmpty()) {
+      if (root != null) {
+        stack.push(root);
+        res.addFirst(root.val);
+        root = root.right;
+      } else {
+        root = stack.pop();
+        root = root.left;
+      }
+    }
     return res;
   }
 }
