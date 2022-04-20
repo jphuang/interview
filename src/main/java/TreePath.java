@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class TreePathSum {
+public class TreePath {
   public static boolean hasPathSum(TreeNode root, int targetSum) {
     if (root == null) {
       return false;
@@ -82,5 +82,25 @@ public class TreePathSum {
     int newValue = root.val + leftValue + rightValue;
     maxSum = Math.max(maxSum, newValue);
     return root.val + Math.max(leftValue, rightValue);
+  }
+
+  public List<String> binaryTreePaths(TreeNode root) {
+    LinkedList<String> res = new LinkedList<>();
+    binaryTreePathsBSF(root, "", res);
+    return res;
+  }
+
+  public void binaryTreePathsBSF(TreeNode root, String path, LinkedList<String> res) {
+    if (root == null) {
+      return;
+    }
+    path += root.val;
+    if (root.left == null && root.right == null) {
+      res.add(path);
+      return;
+    }
+    path += "->";
+    binaryTreePathsBSF(root.left, path, res);
+    binaryTreePathsBSF(root.right, path, res);
   }
 }
