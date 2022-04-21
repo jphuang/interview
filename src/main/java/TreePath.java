@@ -103,4 +103,28 @@ public class TreePath {
     binaryTreePathsBSF(root.left, path, res);
     binaryTreePathsBSF(root.right, path, res);
   }
+
+  public int pathSum(TreeNode root, int targetSum) {
+    int sum = 0;
+    if (root == null) {
+      return 0;
+    }
+    sum += rootPathSum(root, targetSum);
+    sum += pathSum(root.left, targetSum);
+    sum += pathSum(root.right, targetSum);
+    return sum;
+  }
+
+  public int rootPathSum(TreeNode root, int targetSum) {
+    if (root == null) {
+      return 0;
+    }
+    int sum = 0;
+    if (root.val == targetSum) {
+      sum += 1;
+    }
+    sum += rootPathSum(root.left, targetSum - root.val);
+    sum += rootPathSum(root.right, targetSum - root.val);
+    return sum;
+  }
 }
