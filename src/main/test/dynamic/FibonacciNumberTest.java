@@ -20,4 +20,13 @@ public class FibonacciNumberTest {
     fib = FibonacciNumber.fib2(0);
     assert fib == 0;
   }
+
+  @Test
+  public void testFib3() {
+    int fib = FibonacciNumber.fib3(2);
+    assert fib == 1;
+
+    fib = FibonacciNumber.fib3(0);
+    assert fib == 0;
+  }
 }

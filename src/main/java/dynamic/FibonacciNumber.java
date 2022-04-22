@@ -26,4 +26,28 @@ public class FibonacciNumber {
     }
     return fib(n - 1) + fib(n - 2);
   }
+
+  public static int fib3(int n) {
+    if (n < 1) {
+      return 0;
+    }
+    if (n == 1) {
+      return 1;
+    }
+    int[] f = new int[n + 1];
+    f[0] = 0;
+    f[1] = 1;
+    return fib(n - 1) + fib(n - 2);
+  }
+
+  public static int fib3Helper(int n, int[] f) {
+    if (n == 1 || n == 2) {
+      return 1;
+    }
+    if (f[n] != 0) {
+      return f[n];
+    }
+    f[n] = fib3Helper(n - 1, f) + fib3Helper(n - 2, f);
+    return f[n];
+  }
 }
