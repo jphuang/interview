@@ -45,4 +45,30 @@ public class Rob {
     }
     return second;
   }
+  // 740. 删除并获得点数
+  public int deleteAndEarn(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+    if (nums.length == 1) {
+      return nums[0];
+    }
+    int max = nums[0];
+    for (int num : nums) {
+      if (num > max) {
+        max = num;
+      }
+    }
+    int[] all = new int[max + 1];
+    for (int num : nums) {
+      all[num]++;
+    }
+    int dp[] = new int[max + 1];
+    dp[1] = all[1];
+    dp[2] = Math.max(dp[1], all[2] * 2);
+    for (int i = 2; i <= max; ++i) {
+      dp[i] = Math.max(dp[i - 1], dp[i - 2] + i * all[i]);
+    }
+    return dp[max];
+  }
 }
