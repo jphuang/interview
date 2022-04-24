@@ -20,4 +20,29 @@ public class Rob {
     }
     return second;
   }
+
+  public static int rob2(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+    int length = nums.length;
+    if (length == 1) {
+      return nums[0];
+    }
+    if (length == 2) {
+      return Math.max(nums[0], nums[1]);
+    }
+    return Math.max(robRange(nums, 0, length - 1), robRange(nums, 1, length));
+  }
+
+  public static int robRange(int[] nums, int start, int end) {
+    int first = nums[start];
+    int second = Math.max(nums[start], nums[start + 1]);
+    for (int i = start + 2; i < end; i++) {
+      int temp = second;
+      second = Math.max(nums[i] + first, second);
+      first = temp;
+    }
+    return second;
+  }
 }
