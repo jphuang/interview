@@ -9,4 +9,10 @@ public class NumberTest {
     int i = Number.hammingWeight(n);
     assert i == 1;
   }
+
+  @Test
+  public void testIsHappy() {
+    boolean happy = Number.isHappy(19);
+    assert happy;
+  }
 }
