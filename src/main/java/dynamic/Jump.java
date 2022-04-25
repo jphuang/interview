@@ -52,4 +52,22 @@ public class Jump {
     }
     return steps;
   }
+
+  public int Jump2(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+    int position = nums.length;
+    int steps = 0;
+    int maxPosition = 0;
+    int end = 0;
+    for (int i = 0; i < position - 1; i++) {
+      maxPosition = Math.max(maxPosition, i + nums[i]);
+      if (i == end) {
+        end = maxPosition;
+        steps++;
+      }
+    }
+    return steps;
+  }
 }
