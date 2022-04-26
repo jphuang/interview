@@ -2,6 +2,8 @@ package odd;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 public class NumberTest {
   @Test
   public void testHammingWeight() {
@@ -14,5 +16,19 @@ public class NumberTest {
   public void testIsHappy() {
     boolean happy = Number.isHappy(19);
     assert happy;
+  }
+
+  @Test
+  public void testNextGreaterElement() {
+    Number number = new Number();
+    int[] ints = number.nextGreaterElement(new int[] {4, 1, 2}, new int[] {1, 3, 4, 2});
+    System.out.println(Arrays.toString(ints));
+  }
+
+  @Test
+  public void testNextGreaterElement2() {
+    Number number = new Number();
+    int[] ints = number.nextGreaterElement2(new int[] {4, 1, 2}, new int[] {1, 3, 4, 2});
+    System.out.println(Arrays.toString(ints));
   }
 }

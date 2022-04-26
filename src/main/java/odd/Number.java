@@ -1,8 +1,6 @@
 package odd;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Number {
   public static int hammingWeight(int n) {
@@ -129,5 +127,44 @@ public class Number {
       n /= 10;
     }
     return sum;
+  }
+  // 496. 下一个更大元素 I
+  public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+    int[] ans = new int[nums1.length];
+    for (int i = 0; i < nums1.length; i++) {
+      int index = -1;
+      for (int j = 0; j < nums2.length; j++) {
+        if (nums1[i] == nums2[j]) {
+          int k = j + 1;
+          while (nums2.length > k) {
+            if (nums2[k] > nums2[j]) {
+              index = nums2[k];
+              break;
+            }
+            k++;
+          }
+        }
+      }
+      ans[i] = index;
+    }
+    return ans;
+  }
+
+  // 496. 下一个更大元素 I
+  public int[] nextGreaterElement2(int[] nums1, int[] nums2) {
+    int[] ans = new int[nums1.length];
+    Map<Integer, Integer> m = new HashMap<>();
+    Stack<Integer> stack = new Stack<>();
+    for (int length = nums2.length - 1; length >= 0; length--) {
+      while (!stack.isEmpty() && nums2[length] > stack.peek()) {
+        stack.pop();
+      }
+      m.put(nums2[length], stack.isEmpty() ? -1 : stack.peek());
+      stack.push(nums2[length]);
+    }
+    for (int i = 0; i < nums1.length; i++) {
+      ans[i] = m.get(nums1[i]);
+    }
+    return ans;
   }
 }
