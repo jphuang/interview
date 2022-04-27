@@ -18,4 +18,31 @@ public class Product {
     }
     return ans;
   }
+  // 1567. 乘积为正数的最长子数组长度
+  // 给你一个整数数组 nums ，请你求出乘积为正数的最长子数组的长度。
+  // 一个数组的子数组是由原数组中零个或者更多个连续数字组成的数组。
+  // 请你返回乘积为正数的最长子数组长度。
+  public int getMaxLen(int[] nums) {
+    int positive = nums[0] > 0 ? 1 : 0;
+    int negative = nums[0] < 0 ? 1 : 0;
+    int maxLength = positive;
+    for (int i = 1; i < nums.length; i++) {
+      if (nums[i] == 0) {
+        positive = 0;
+        negative = 0;
+      }
+      if (nums[i] > 0) {
+        positive++;
+        negative = negative > 0 ? negative + 1 : 0;
+      }
+      if (nums[i] < 0) {
+        int positiveTemp = negative > 0 ? negative + 1 : 0;
+        int negativeTemp = positive + 1;
+        positive = positiveTemp;
+        negative = negativeTemp;
+      }
+      maxLength = Math.max(maxLength, positive);
+    }
+    return maxLength;
+  }
 }
