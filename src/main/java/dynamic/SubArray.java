@@ -74,4 +74,50 @@ public class SubArray {
     }
     return max;
   }
+  // 1588. 所有奇数长度子数组的和
+  // 给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。
+  // 子数组 定义为原数组中的一个连续子序列。
+  // 请你返回 arr 中 所有奇数长度子数组的和 。
+  public int sumOddLengthSubArrays(int[] arr) {
+    int maxSum = 0;
+    for (int len = 1; len <= arr.length; len += 2) {
+      Deque<Integer> queue = new LinkedList<>();
+      int sum = 0;
+      for (int i = 0; i < len; i++) {
+        queue.add(arr[i]);
+        sum += arr[i];
+      }
+      maxSum += sum;
+      for (int start = 1; start < arr.length; start++) {
+        int end = start + len - 1;
+        if (end >= arr.length) {
+          break;
+        }
+        int n = queue.pollFirst();
+        sum = sum + arr[end] - n;
+        maxSum += sum;
+        queue.offerLast(arr[end]);
+      }
+    }
+    return maxSum;
+  }
+
+  public int sumOddLengthSubArrays2(int[] arr) {
+    int maxSum = 0;
+    int[] preSum = new int[arr.length + 1];
+    preSum[0] = 0;
+    for (int i = 0; i < arr.length; i++) {
+      preSum[i + 1] = preSum[i] + arr[i];
+    }
+    for (int len = 1; len <= arr.length; len += 2) {
+      for (int start = 0; start <= arr.length; start++) {
+        int end = start + len - 1;
+        if (end >= arr.length) {
+          break;
+        }
+        maxSum += preSum[end + 1] - preSum[start];
+      }
+    }
+    return maxSum;
+  }
 }
