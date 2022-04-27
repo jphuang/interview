@@ -31,4 +31,40 @@ public class Odd {
     }
     return (sum - min - max) / (salary.length - 2);
   }
+  // 283. 移动零
+  // 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
+  //
+  // 请注意 ，必须在不复制数组的情况下原地对数组进行操作。
+  public void moveZeroes(int[] nums) {
+    int j = 0;
+    for (int i = 0; i < nums.length; i++) {
+      if (nums[i] == 0) {
+        if (j == 0) {
+          j = i + 1;
+        }
+        if (j >= nums.length) {
+          break;
+        }
+        for (; j < nums.length; j++) {
+          if (nums[j] != 0) {
+            nums[i] = nums[j];
+            nums[j] = 0;
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  public void moveZeroes2(int[] nums) {
+    int index = 0;
+    for (int i = 1; i < nums.length; i++) {
+      if (nums[i] != 0 && i != index) {
+        nums[index++] = nums[i];
+      }
+    }
+    for (int i = index; i < nums.length; i++) {
+      nums[i] = 0;
+    }
+  }
 }
