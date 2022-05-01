@@ -53,6 +53,14 @@ public class Profit {
   // 注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。
   public int maxProfitByFreezing(int[] prices) {
     int max = 0;
+    int dp_i_1 = Integer.MIN_VALUE;
+    int dp_pro_0 = 0;
+    for (int i = 0; i < prices.length; i++) {
+      int temp = max;
+      max = Math.max(max, dp_i_1 + prices[i]);
+      dp_i_1 = Math.max(dp_i_1, dp_pro_0 - prices[i]);
+      dp_pro_0 = temp;
+    }
     return max;
   }
 }
