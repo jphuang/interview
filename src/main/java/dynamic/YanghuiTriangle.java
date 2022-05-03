@@ -50,9 +50,8 @@ public class YanghuiTriangle {
     List<Integer> pre = new LinkedList<>();
     pre.add(1);
     for (int i = 1; i <= rowIndex; i++) {
+      pre.add(0);
       for (int j = i; j > 0; j--) {
-        // 上一行的两个数
-        pre.add(0);
         pre.set(j, pre.get(j - 1) + pre.get(j));
       }
     }
