@@ -1,3 +1,5 @@
+import tree.TreeNode;
+
 public class Subtree {
   public boolean isSubtree(TreeNode root, TreeNode subRoot) {
     if (root == null) {

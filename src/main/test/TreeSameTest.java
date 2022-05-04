@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import tree.TreeNode;
+import tree.TreeSame;
 
 public class TreeSameTest {
   @Test

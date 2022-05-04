@@ -1,3 +1,5 @@
+package tree;
+
 public class TreeLeaves {
   // 404. 左叶子之和- 递归
   public int sumOfLeftLeaves(TreeNode root) {

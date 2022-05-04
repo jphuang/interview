@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test;
+import tree.TreeDepth;
+import tree.TreeNode;
 
 public class TreeDepthTest {
   @Test

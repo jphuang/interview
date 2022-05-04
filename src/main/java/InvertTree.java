@@ -1,3 +1,5 @@
+import tree.TreeNode;
+
 public class InvertTree {
   public TreeNode invertTree(TreeNode root) {
     if (root == null) {
