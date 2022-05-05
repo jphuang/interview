@@ -1,4 +1,4 @@
-import tree.TreeNode;
+package tree;
 
 public class Subtree {
   public boolean isSubtree(TreeNode root, TreeNode subRoot) {

@@ -1,4 +1,4 @@
-import tree.TreeNode;
+package tree;
 
 public class InvertTree {
   public TreeNode invertTree(TreeNode root) {
