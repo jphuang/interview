@@ -36,4 +36,24 @@ public class MatrixTest {
                 });
     assert i == 16;
   }
+
+  @Test
+  public void testSearchMatrix() {
+    boolean i =
+        new Matrix()
+            .searchMatrix(new int[][] {{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}}, 13);
+    assert !i;
+  }
+
+  @Test
+  public void testSearchMatrix2() {
+    boolean i = new Matrix().searchMatrix(new int[][] {{1}}, 1);
+    assert i;
+  }
+
+  @Test
+  public void testSearchMatrix3() {
+    boolean i = new Matrix().searchMatrix(new int[][] {{1, 3}}, 3);
+    assert i;
+  }
 }

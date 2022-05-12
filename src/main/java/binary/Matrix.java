@@ -29,4 +29,33 @@ public class Matrix {
     }
     return arr[low] < 0 ? arr.length - low : 0;
   }
+
+  // 74. 搜索二维矩阵
+  // 编写一个高效的算法来判断 m x n 矩阵中，是否存在一个目标值。该矩阵具有如下特性：
+  //
+  // 每行中的整数从左到右按升序排列。
+  // 每行的第一个整数大于前一行的最后一个整数。
+  public boolean searchMatrix(int[][] matrix, int target) {
+    for (int[] ints : matrix) {
+      if (ints[0] > target) {
+        return false;
+      }
+      if (ints[ints.length - 1] >= target) {
+        int low = 0;
+        int high = ints.length;
+        while (low < high) {
+          int mid = (high - low) / 2 + low;
+          if (ints[mid] == target) {
+            return true;
+          }
+          if (ints[mid] < target) {
+            low = mid + 1;
+          } else {
+            high = mid;
+          }
+        }
+      }
+    }
+    return false;
+  }
 }
