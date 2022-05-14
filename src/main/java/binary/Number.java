@@ -1,5 +1,7 @@
 package binary;
 
+import java.util.Arrays;
+
 public class Number extends GuessGame {
   // 374. 猜数字大小
   // 猜数字游戏的规则如下：
@@ -32,5 +34,35 @@ public class Number extends GuessGame {
 
   public Number(int n) {
     super(n);
+  }
+  // 1346. 检查整数及其两倍数是否存在
+  // 给你一个整数数组 arr，请你检查是否存在两个整数 N 和 M，满足 N 是 M 的两倍（即，N = 2 * M）。
+  public boolean checkIfExist(int[] arr) {
+    Arrays.sort(arr);
+    int length = arr.length;
+    for (int i = 0; i < length; i++) {
+      int index = search(arr, arr[i] * 2);
+      if (index != -1 && index != i) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public int search(int[] nums, int target) {
+    int left = 0;
+    int right = nums.length - 1;
+    while (left <= right) {
+      int mid = (right - left) / 2 + left;
+      if (nums[mid] == target) {
+        return mid;
+      }
+      if (nums[mid] > target) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    }
+    return -1;
   }
 }
