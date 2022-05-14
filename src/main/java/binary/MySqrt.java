@@ -37,4 +37,23 @@ public class MySqrt {
     }
     return right;
   }
+
+  // 633. 平方数之和
+  // 给定一个非负整数 c ，你要判断是否存在两个整数 a 和 b，使得 a2 + b2 = c 。
+  public boolean judgeSquareSum(int c) {
+    int a = 1;
+    int b = (int) Math.sqrt(c);
+    while (a <= b) {
+      int x = a * a + b * b;
+      if (x == c) {
+        return true;
+      }
+      if (x > c) {
+        b--;
+      } else {
+        a++;
+      }
+    }
+    return false;
+  }
 }
