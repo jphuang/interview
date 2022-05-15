@@ -42,4 +42,20 @@ public class SearchTest {
     assert index[0] == -1;
     assert index[1] == -1;
   }
+
+  @Test
+  public void testSearchRotateSortArray() {
+    Search search = new Search();
+    int i = search.searchRotateSortArray(new int[] {4, 5, 6, 7, 0, 1, 2}, 0);
+    assert i == 4;
+
+    i = search.searchRotateSortArray(new int[] {4, 5, 6, 7, 0, 1, 2}, 6);
+    assert i == 2;
+
+    i = search.searchRotateSortArray(new int[] {4, 5, 6, 7, 0, 1, 2}, 3);
+    assert i == -1;
+
+    i = search.searchRotateSortArray(new int[] {1}, 3);
+    assert i == -1;
+  }
 }
