@@ -20,4 +20,11 @@ class NumberTest {
     assertEquals(1, numberUnderTest.singleNumber(new int[] {2, 2, 1}));
     assertEquals(4, numberUnderTest.singleNumber(new int[] {4, 1, 2, 1, 2}));
   }
+
+  @Test
+  void testMajorityElement() {
+    assertEquals(3, numberUnderTest.majorityElement(new int[] {3, 2, 3}));
+    assertEquals(2, numberUnderTest.majorityElement(new int[] {2, 2, 1}));
+    assertEquals(2, numberUnderTest.majorityElement(new int[] {2, 2, 1, 1, 1, 2, 2}));
+  }
 }
