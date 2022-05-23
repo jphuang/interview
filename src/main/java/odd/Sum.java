@@ -4,12 +4,47 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author huangjiangping
+ */
 public class Sum {
-  public static List<List<Integer>> threeSum(int[] nums) {
+  /**
+   * * 15. 三数之和 给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。
+   *
+   * <p>注意：答案中不可以包含重复的三元组。
+   *
+   * @param nums 整数的数组
+   * @return 三元组
+   */
+  public List<List<Integer>> threeSum(int[] nums) {
     List<List<Integer>> sumList = new ArrayList<>();
     Arrays.sort(nums);
-    for (int i = 0; i < nums.length; i++) {}
-
+    int length = nums.length;
+    for (int i = 0; i < length; i++) {
+      if (i > 0 && nums[i] == nums[i - 1]) {
+        continue;
+      }
+      int target = -nums[i];
+      int three = length - 1;
+      for (int second = i + 1; second < length; second++) {
+        if (second > i + 1 && nums[second] == nums[second - 1]) {
+          continue;
+        }
+        while (second < three && nums[second] + nums[three] > target) {
+          three--;
+        }
+        if (second == three) {
+          break;
+        }
+        if (nums[second] + nums[three] == target) {
+          List<Integer> list = new ArrayList<>();
+          list.add(nums[i]);
+          list.add(nums[second]);
+          list.add(nums[three]);
+          sumList.add(list);
+        }
+      }
+    }
     return sumList;
   }
 
