@@ -31,4 +31,11 @@ public class NumberTest {
     int[] ints = number.nextGreaterElement2(new int[] {4, 1, 2}, new int[] {1, 3, 4, 2});
     System.out.println(Arrays.toString(ints));
   }
+
+    @org.junit.Test
+    public void runningSum() {
+        Number number = new Number();
+        int[] sum = number.runningSum(new int[] {4, 1, 2});
+        assert Arrays.equals(sum, new int[] {4, 5, 7});
+    }
 }
