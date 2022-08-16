@@ -38,4 +38,16 @@ public class NumberTest {
         int[] sum = number.runningSum(new int[] {4, 1, 2});
         assert Arrays.equals(sum, new int[] {4, 5, 7});
     }
+
+    @org.junit.Test
+    public void pivotIndex() {
+        Number number = new Number();
+        int i = number.pivotIndex(new int[] {1, 7, 3, 6, 5, 6});
+        assert i == 3;
+        i = number.pivotIndex(new int[] {1, 2, 3});
+        assert i == -1;
+
+        i = number.pivotIndex(new int[] {-1, -1, -1, -1, -1, 0});
+        assert i == 2;
+    }
 }
