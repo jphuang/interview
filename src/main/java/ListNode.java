@@ -1,3 +1,4 @@
+/** @author jphuang */
 public class ListNode {
   int val;
   ListNode next;
@@ -52,4 +53,27 @@ public class ListNode {
     }
     return pre;
   }
+
+    /**
+     * 给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+     *
+     * @param head 头节点
+     * @return 反转后的链表
+     */
+    public ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode curr = head;
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = next;
+        }
+        return pre;
+    }
+
+    @Override
+    public String toString() {
+        return "ListNode{" + "val=" + val + ", next=" + next + '}';
+    }
 }
