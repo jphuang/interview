@@ -38,16 +38,16 @@ public class PhoneNumber {
         }
         char[] chars = digits.toCharArray();
         List<List<Character>>  list  = new ArrayList<>();
-        char aChar = chars[0];
-        int index = Integer.parseInt(aChar + "");
-        List<Character> first = charList.get(index - 2);
-        Stream<String> objectStream = first.stream().map(Object::toString);
-        for (int i = 1; i < chars.length; i++) {
-             index = Integer.parseInt(chars[i] + "");
+        Stream<String> objectStream = null ;
+         for (char aChar : chars) {
+             int index = Integer.parseInt(aChar + "");
             List<Character> e = charList.get(index - 2);
-            objectStream = objectStream.flatMap(c->e.stream().map(Object::toString).map(c::concat));
+            if(objectStream == null ){
+                objectStream = e.stream().map(Object::toString);
+            }else {
+                objectStream = objectStream.flatMap(c->e.stream().map(Object::toString).map(c::concat));
+            }
         }
-
         return objectStream.collect(Collectors.toList());
     }
 
